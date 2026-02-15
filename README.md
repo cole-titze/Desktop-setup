@@ -1,4 +1,4 @@
-# Desktop-setup
+# desktop-setup
 Scripts to deploy a fresh desktop environment.
 
 ## [Pop! OS Download](https://system76.com/pop/download/?srsltid=AfmBOopceCSQ7sEyktnyPRdyNQvyLp19kw9GvyJileS4WTL-QezShkrF)
@@ -12,8 +12,8 @@ sudo apt-get install git
 ```
 + Install and run setup script
 ```
-git clone https://github.com/cole-titze/Desktop-setup.git
-cd Desktop-setup
+git clone https://github.com/cole-titze/desktop-setup.git
+cd desktop-setup
 chmod u+r+x *
 source setup.sh
 ```
@@ -21,6 +21,6 @@ source setup.sh
 + Copy contents of ~/.ssh/id_ed25519.pub to github public ssh keys in settings
 + Make sure ssh keys are working
 ```
-cd && rm -rf Desktop-setup
-git clone git@github.com:coleTitze/Desktop-setup.git
+cd && rm -rf desktop-setup
+git clone git@github.com:coleTitze/desktop-setup.git
 ```
