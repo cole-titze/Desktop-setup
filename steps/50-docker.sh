@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "==> Installing Docker"
+
+# Install using official script
+curl -fsSL https://get.docker.com | sudo sh
+
+# Add current user to docker group
+sudo usermod -aG docker "$USER"
+
+# Enable Docker on boot
+sudo systemctl enable docker
+sudo systemctl start docker
+
+echo "You must log out and back in (or reboot) before using docker without sudo."
+
+echo "50-docker complete"
