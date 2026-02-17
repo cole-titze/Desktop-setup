@@ -1,13 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "==> Configuring static IP for Ethernet (Netplan)"
+echo "==> Configuring static IP for active Ethernet interface"
+
+# Auto-detect connected ethernet interface
+INTERFACE="$(nmcli -t -f DEVICE,TYPE,STATE device status \
+  | awk -F: '$2=="ethernet" && $3=="connected" {print $1; exit}')"
+
+if [[ -z "$INTERFACE" ]]; then
+  echo "ERROR: No connected ethernet interface found." >&2
+  exit 1
+fi
+
+echo "Detected interface: $INTERFACE"
 
 # ===== EDIT THESE =====
-INTERFACE="enp3s0"          # Run `ip a` to confirm
-STATIC_IP="10.42.0.50/24"   # Your desired static IP
-GATEWAY="10.42.0.1"         # Your router / Pi-hole gateway
-DNS1="10.42.0.2"            # Your Pi-hole IP
+STATIC_IP="10.42.0.50/24"
+GATEWAY="10.42.0.1"
+DNS1="10.42.0.2"
 DNS2="10.42.0.2"
 # ======================
 
@@ -31,5 +41,4 @@ EOF
 
 sudo netplan apply
 
-echo "✅ Static IP applied."
-echo "Verify with: ip a && ip route"
+echo "Static IP applied"
