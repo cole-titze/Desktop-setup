@@ -3,20 +3,27 @@ set -euo pipefail
 
 echo "==> Installing base development tools"
 
-# Install Microsoft package repository for .NET SDK
-wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt update
-
-sudo apt install -y \
+sudo apt-get update
+sudo apt-get install -y \
   git \
   build-essential \
   python3 \
   python3-venv \
   python3-pip \
-  dotnet-sdk-7.0 \
-  dotnet-sdk-8.0 \
-  dotnet-sdk-9.0 \
+  wget
+
+# Install Microsoft package repository for Ubuntu 22.04 (Pop!_OS jammy)
+if ! dpkg -s packages-microsoft-prod >/dev/null 2>&1; then
+  wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  sudo dpkg -i packages-microsoft-prod.deb
+  rm packages-microsoft-prod.deb
+fi
+
+sudo apt-get update
+
+# Install .NET SDK (pick the version you want)
+sudo apt-get install -y \
+  -o Dpkg::Options::="--force-confnew" \
   dotnet-sdk-10.0
 
 echo "30-dev-base complete"
