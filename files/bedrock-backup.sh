@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DATA_DIR="/opt/bedrock/data"
+DATA_DIR="/opt/bedrock/data/worlds"
 BACKUP_DIR="/opt/bedrock/backups"
 TS="$(date +'%Y-%m-%d_%H-%M-%S')"
 OUT="${BACKUP_DIR}/bedrock_${TS}.tar.gz"
