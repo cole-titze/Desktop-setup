@@ -12,4 +12,4 @@ git config --global init.defaultBranch main
 git config --global pull.rebase true
 git config --global core.editor "code --wait"
 
-echo "35-gitconfig complete"
+echo "31-gitconfig complete"
