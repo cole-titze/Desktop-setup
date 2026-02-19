@@ -5,7 +5,7 @@ echo "==> Setting desktop wallpaper from repo"
 
 # Resolve script directory (works even if run from elsewhere)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-WALLPAPER="$SCRIPT_DIR/files/wallpaper.jpg"
+WALLPAPER="$SCRIPT_DIR/../files/wallpaper.jpg"
 
 if [ ! -f "$WALLPAPER" ]; then
   echo "Wallpaper not found at $WALLPAPER"
