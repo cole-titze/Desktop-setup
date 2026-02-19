@@ -19,4 +19,4 @@ gsettings set org.gnome.desktop.background picture-uri "$WALLPAPER_URI"
 gsettings set org.gnome.desktop.background picture-uri-dark "$WALLPAPER_URI"
 
 echo "Wallpaper set successfully"
-echo "02-wallpaper complete"
+echo "01-wallpaper complete"
