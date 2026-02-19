@@ -1,23 +1,15 @@
-#!/usr/bin/env bash
-set -euo pipefail
+echo "==> Setting NVIDIA viewport on login"
 
-echo "==> Enabling NVIDIA config load on GNOME login"
+mkdir -p "$HOME/.config/autostart"
 
-AUTOSTART_DIR="$HOME/.config/autostart"
-DESKTOP_FILE="$AUTOSTART_DIR/nvidia-load-config.desktop"
-
-mkdir -p "$AUTOSTART_DIR"
-
-cat > "$DESKTOP_FILE" <<'EOF'
+cat << EOF > "$HOME/.config/autostart/nvidia-viewport.desktop"
 [Desktop Entry]
 Type=Application
-Name=NVIDIA Load Config
-Comment=Force load NVIDIA Xorg configuration on login
-Exec=sh -lc 'if [ "$XDG_SESSION_TYPE" = "x11" ]; then sleep 3 && nvidia-settings --load-config-only; fi'
+Exec=/usr/bin/nvidia-settings --assign CurrentMetaMode=DPY-1:\ 2560x1440_144\ +0+0\ {ViewPortIn=2752x2064,\ ViewPortOut=2560x1440+0+0}
+Hidden=false
+NoDisplay=false
 X-GNOME-Autostart-enabled=true
-X-GNOME-Autostart-Delay=10
+Name=NVIDIA Viewport
 EOF
 
-echo "NVIDIA config will load 10 seconds after Xorg login."
-echo "To disable later: delete $DESKTOP_FILE"
-echo "71-nvidia-load-config complete"
+echo "02-nvidia-viewport complete"
